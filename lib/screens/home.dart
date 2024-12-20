@@ -12,11 +12,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<User> users = [];
-@override
-void initState(){
-  super.initState();
-  fetchUsers();
-} 
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,14 +35,14 @@ void initState(){
           final user = users[index];
           return ListTile(
             title: Text(user.fullName),
-            subtitle: Text(user.phone),
+            subtitle: Text(user.location.postcode),
           );
         },
       ),
     );
   }
 
-  Future<void> fetchUsers() async{
+  Future<void> fetchUsers() async {
     final response = await UserApi.fetchUsers();
     setState(() {
       users = response;
